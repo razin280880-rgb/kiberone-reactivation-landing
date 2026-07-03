@@ -8,8 +8,56 @@
   <meta property="og:title" content="KIBERone — Через 5 лет ИИ будет как умение читать">
   <meta property="og:description" content="Программа полностью переделана под искусственный интеллект. Покажем за 1 час, что раньше учили месяцами.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="KIBERone — Через 5 лет ИИ будет как умение читать">
+  <meta name="twitter:description" content="Программа полностью переделана под искусственный интеллект. Покажем за 1 час, что раньше учили месяцами.">
+  <meta name="twitter:image" content="og-image.png">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
+
+  <!-- ══ ANALYTICS ══ -->
+  <script>
+    window.METRIKA_ID = '109689627';
+    window.VK_TMR_ID = '3770897';
+    // безопасная обёртка: цели не падают, если счётчик ещё не инициализирован
+    window.reachGoal = function (name, params) {
+      try { if (window.ym && window.METRIKA_ID) ym(window.METRIKA_ID, 'reachGoal', name, params || {}); } catch (e) {}
+      try { if (window._tmr) _tmr.push({ id: window.VK_TMR_ID, type: 'reachGoal', goal: name }); } catch (e) {}
+    };
+  </script>
+
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    if (window.METRIKA_ID) {
+      ym(window.METRIKA_ID, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, ecommerce:"dataLayer" });
+    }
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/109689627" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
+
+  <!-- Top.Mail.Ru counter (VK Ads) -->
+  <script type="text/javascript">
+    var _tmr = window._tmr || (window._tmr = []);
+    _tmr.push({id: "3770897", type: "pageView", start: (new Date()).getTime()});
+    (function (d, w, id) {
+      if (d.getElementById(id)) return;
+      var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+      ts.src = "https://top-fwz1.mail.ru/js/code.js";
+      var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+      if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+    })(document, window, "tmr-code");
+  </script>
+  <noscript><div><img src="https://top-fwz1.mail.ru/counter?id=3770897;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div></noscript>
+  <!-- /Top.Mail.Ru counter -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -225,23 +273,36 @@
       border-color: var(--primary);
       color: var(--primary);
     }
-    .btn-whatsapp {
+    .btn-kamilla,
+    .btn-call {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 18px 28px;
-      background: var(--whatsapp);
-      color: var(--white);
+      padding: 18px 24px;
       border: 0;
       border-radius: 999px;
       font-weight: 700;
       font-size: 15px;
       cursor: pointer;
-      transition: background 0.15s;
+      transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
       font-family: inherit;
+      text-decoration: none;
     }
-    .btn-whatsapp:hover { background: var(--whatsapp-dark); }
-    .btn-whatsapp svg { width: 20px; height: 20px; fill: var(--white); }
+    .btn-kamilla {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--white);
+      box-shadow: 0 8px 22px rgba(0, 82, 204, 0.3);
+    }
+    .btn-kamilla:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0, 82, 204, 0.4); }
+    .btn-kamilla svg { width: 20px; height: 20px; fill: var(--white); }
+    .btn-call {
+      background: var(--white);
+      color: var(--dark);
+      border: 2px solid var(--gray-300);
+    }
+    .btn-call:hover { border-color: var(--dark); background: var(--dark); color: var(--white); }
+    .btn-call:hover svg { fill: var(--white); }
+    .btn-call svg { width: 18px; height: 18px; fill: var(--dark); transition: fill 0.15s; }
 
     .hero-meta {
       display: flex;
@@ -713,6 +774,25 @@
       gap: 14px;
       justify-content: center;
     }
+    /* На синем фоне финальной CTA даём кнопке Камиллы белый вариант */
+    .final-cta .btn-kamilla {
+      background: rgba(255, 255, 255, 0.14);
+      color: var(--white);
+      box-shadow: none;
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+    }
+    .final-cta .btn-kamilla:hover {
+      background: rgba(255, 255, 255, 0.22);
+      box-shadow: none;
+    }
+    .final-cta .btn-call {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+    .final-cta .btn-call svg { fill: var(--white); }
+    .final-cta .btn-call:hover { background: var(--white); color: var(--dark); border-color: var(--white); }
+    .final-cta .btn-call:hover svg { fill: var(--dark); }
 
     /* ─────── MODAL ─────── */
     .modal-bg {
@@ -810,6 +890,258 @@
       margin-top: 14px;
     }
 
+    /* ─────── VIDEO FACADE ─────── */
+    .video-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .video-facade {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      background: linear-gradient(135deg, #1E293B 0%, #0F1419 100%);
+      box-shadow: var(--shadow-lg);
+      isolation: isolate;
+    }
+    .video-facade img,
+    .video-facade iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: 0;
+    }
+    .video-facade::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.55) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .video-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+      transition: transform 0.18s;
+    }
+    .video-play::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 22px solid var(--dark);
+      border-top: 14px solid transparent;
+      border-bottom: 14px solid transparent;
+      margin-left: 6px;
+    }
+    .video-facade:hover .video-play { transform: translate(-50%, -50%) scale(1.06); }
+    .video-caption {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 15px;
+      z-index: 2;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+    .video-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.35);
+      font-size: 60px;
+      font-weight: 900;
+      letter-spacing: -3px;
+    }
+
+    /* ─────── STATS BEFORE/AFTER ─────── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    @media (min-width: 720px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .stat-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-100);
+    }
+    .stat-topic {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+    .stat-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 12px;
+      align-items: stretch;
+    }
+    .stat-side {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+    }
+    .stat-tag {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--gray-500);
+    }
+    .stat-value {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--gray-700);
+      line-height: 1.25;
+    }
+    .stat-side.now .stat-tag { color: var(--primary); }
+    .stat-side.now .stat-value { color: var(--dark); font-size: 20px; }
+    .stat-arrow {
+      display: flex;
+      align-items: center;
+      color: var(--primary);
+      font-weight: 900;
+      font-size: 22px;
+    }
+
+    /* ─────── FAQ ─────── */
+    .faq {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.15s;
+    }
+    .faq-item[open] { box-shadow: var(--shadow-md); }
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 20px 56px 20px 22px;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--dark);
+      position: relative;
+      line-height: 1.35;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+';
+      position: absolute;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 20px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .faq-item[open] summary::after {
+      content: '−';
+      background: var(--primary);
+      color: var(--white);
+    }
+    .faq-answer {
+      padding: 0 22px 22px;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--gray-700);
+    }
+    .faq-answer p + p { margin-top: 10px; }
+    .faq-answer strong { color: var(--dark); }
+
+    /* ─────── STICKY MOBILE BAR ─────── */
+    .mbar {
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      display: none;
+      gap: 8px;
+      z-index: 90;
+      background: var(--white);
+      border-radius: 999px;
+      padding: 8px;
+      box-shadow: 0 10px 30px rgba(15, 20, 25, 0.18), 0 2px 8px rgba(15, 20, 25, 0.08);
+      border: 1px solid var(--gray-100);
+      transform: translateY(120%);
+      transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    .mbar.on { transform: translateY(0); }
+    .mbar-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 12px;
+      border: 0;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: inherit;
+      line-height: 1;
+    }
+    .mbar-primary { background: var(--accent); color: var(--dark); }
+    .mbar-call {
+      background: var(--dark);
+      color: var(--white);
+      flex: 0 0 auto;
+      width: 52px;
+      padding: 14px;
+      text-decoration: none;
+    }
+    .mbar-call svg { width: 20px; height: 20px; fill: var(--white); }
+    @media (max-width: 720px) {
+      .mbar { display: flex; }
+      body.has-mbar { padding-bottom: 78px; }
+      /* поднимаем виджет Камиллы над мобильным баром, чтобы не перекрывал */
+      .kbr-launcher { bottom: 88px !important; }
+    }
+
     /* ─────── FOOTER ─────── */
     .footer {
       background: var(--gray-900);
@@ -876,10 +1208,14 @@
           Записаться на бесплатный AI-пробный
           <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
         </button>
-        <button class="btn-whatsapp" onclick="askForSchedule()">
-          <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.86 9.86 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/></svg>
-          Узнать расписание
+        <button class="btn-kamilla" onclick="askForSchedule()">
+          <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM7 9h10v2H7V9zm6 5H7v-2h6v2zm4-6H7V6h10v2z"/></svg>
+          Спросить у Камиллы
         </button>
+        <a class="btn-call" href="tel:+79274334966" onclick="window.reachGoal && window.reachGoal('click_call')">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25 1.12.37 2.32.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          Позвонить
+        </a>
       </div>
 
       <div class="hero-meta">
@@ -915,8 +1251,25 @@
     </div>
   </section>
 
-  <!-- BEFORE / AFTER -->
+  <!-- VIDEO -->
   <section class="section">
+    <div class="container">
+      <h2 class="section-title">За 60 секунд — что теперь происходит на пробном</h2>
+      <p class="section-sub">Настоящее занятие, снятое в наших классах. Посмотрите — потом решите, стоит ли час вашего вечера.</p>
+
+      <div class="video-wrap">
+        <!-- ⚠️ Маркетолог: подставьте YOUTUBE_ID и, при желании, poster.jpg (1200×675) в корень проекта -->
+        <div class="video-facade" id="video-facade" data-video-id="" role="button" tabindex="0" aria-label="Смотреть видео 60 секунд про AI-пробный">
+          <div class="video-fallback">KIBERone · AI-пробный</div>
+          <div class="video-caption">60 секунд · без монтажа</div>
+          <button class="video-play" type="button" aria-label="Смотреть видео"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEFORE / AFTER -->
+  <section class="section section-light">
     <div class="container">
       <h2 class="section-title">Это не тот пробный, который вы помните</h2>
       <p class="section-sub">В этом году мы полностью пересобрали программу. Если ребёнок был у нас раньше — увидит совершенно другое.</p>
@@ -943,6 +1296,76 @@
             <li>Готовая игра за 1 час — можно показать друзьям</li>
             <li>Ребёнок — режиссёр своего проекта</li>
           </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BEFORE / AFTER -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Что именно изменилось</h2>
+      <p class="section-sub">Не «улучшили преподавание», а полностью пересобрали, что делает ребёнок в течение часа.</p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-topic">Время до первого прототипа</div>
+          <div class="stat-row">
+            <div class="stat-side">
+              <span class="stat-tag">Было</span>
+              <span class="stat-value">2–3 месяца</span>
+            </div>
+            <div class="stat-arrow">→</div>
+            <div class="stat-side now">
+              <span class="stat-tag">Стало</span>
+              <span class="stat-value">60 минут</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-topic">Инструменты, с которыми работает ребёнок</div>
+          <div class="stat-row">
+            <div class="stat-side">
+              <span class="stat-tag">Было</span>
+              <span class="stat-value">Scratch, готовые блоки</span>
+            </div>
+            <div class="stat-arrow">→</div>
+            <div class="stat-side now">
+              <span class="stat-tag">Стало</span>
+              <span class="stat-value">DeepSeek · Qwen · Suno</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-topic">Главный навык, который тренируется</div>
+          <div class="stat-row">
+            <div class="stat-side">
+              <span class="stat-tag">Было</span>
+              <span class="stat-value">повторить за педагогом</span>
+            </div>
+            <div class="stat-arrow">→</div>
+            <div class="stat-side now">
+              <span class="stat-tag">Стало</span>
+              <span class="stat-value">поставить задачу ИИ</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-topic">Что уносит домой</div>
+          <div class="stat-row">
+            <div class="stat-side">
+              <span class="stat-tag">Было</span>
+              <span class="stat-value">презентация «как круто»</span>
+            </div>
+            <div class="stat-arrow">→</div>
+            <div class="stat-side now">
+              <span class="stat-tag">Стало</span>
+              <span class="stat-value">рабочая игра со ссылкой</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1105,6 +1528,70 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="section section-light">
+    <div class="container">
+      <h2 class="section-title">Частые вопросы</h2>
+      <p class="section-sub">Собрали то, что чаще всего спрашивают родители, которые уже были у нас на пробном раньше.</p>
+
+      <div class="faq">
+        <details class="faq-item">
+          <summary>Мы уже приходили на пробный — а что нового мне покажут сейчас?</summary>
+          <div class="faq-answer">
+            <p>За год программа полностью переехала с готовых конструкторов на настоящие нейросети. Ребёнок теперь работает с <strong>DeepSeek, Qwen и Suno</strong> — теми же инструментами, что используют взрослые разработчики и сценаристы.</p>
+            <p>На пробном за 1 час ребёнок формулирует задачу ИИ, слышит озвучку своих героев голосом ИИ и уходит с работающим прототипом игры со ссылкой, которую можно показать друзьям.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Ребёнок уже пробовал Scratch — не будет ли повтор того же самого?</summary>
+          <div class="faq-answer">
+            <p><strong>Не будет.</strong> На новом пробном Scratch не используется вообще. Ребёнок учится главному навыку эры ИИ — правильно ставить задачу нейросети, чтобы получить нужный результат.</p>
+            <p>Даже те дети, что раньше «не зашли» на программирование, часто загораются на новом формате — потому что теперь не нужно писать код, чтобы получить результат: достаточно чётко описать, что ты хочешь.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Сколько стоит после пробного?</summary>
+          <div class="faq-answer">
+            <p>Цена индивидуальна — зависит от филиала, возраста ребёнка и выбранного графика. Точные условия менеджер расскажет после пробного, когда вы уже увидите, как ребёнок работает.</p>
+            <p>Мы принципиально не называем цифры до занятия: если формат не зайдёт — цена не важна, а если зайдёт — сравнивать надо не «сколько стоит», а «что получает».</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Можно записаться в другой филиал, если сменился район?</summary>
+          <div class="faq-answer">
+            <p>Да, у нас 24 локации в 7 городах: Челны, Нижнекамск, Казань, Елабуга, Краснодар, Сургут и Пермь. Напишите менеджеру в WhatsApp, в каком районе удобно — подберём ближайшую точку и предложим свободные слоты.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>А если после пробного не подойдёт — точно не будете названивать?</summary>
+          <div class="faq-answer">
+            <p>Точно. Если ребёнку формат не понравится — просто скажите менеджеру после занятия. <strong>Ни одного повторного звонка, ни одного «давайте ещё разок подумаем».</strong> У нас слишком много горящих родителей, чтобы тратить ваше и наше время.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Ребёнок стеснительный — как проходит пробный?</summary>
+          <div class="faq-answer">
+            <p>Пробный проходит в мини-группе до 8 детей, при этом преподаватель работает индивидуально с каждым. Стеснительным детям как раз подходит: не нужно выступать перед классом, вся работа — тет-а-тет с ноутбуком и ИИ.</p>
+            <p>Родитель может присутствовать в классе, если ребёнку так спокойнее.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Сколько групп на сентябрь и когда крайний срок записаться?</summary>
+          <div class="faq-answer">
+            <p>Основная запись идёт в июле–августе, к сентябрю группы обычно заполнены на 80–90%. После 1 сентября добор возможен только через отток — а это, как правило, только январь.</p>
+            <p>Если хотите гарантированно попасть в удобное время и филиал — <strong>лучше записаться на пробный в июле</strong>: сейчас есть выбор из любых дней и любых преподавателей.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- FINAL CTA -->
   <section class="final-cta" id="cta">
     <div class="container">
@@ -1115,10 +1602,14 @@
           Записаться на пробный
           <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
         </button>
-        <button class="btn-whatsapp" onclick="contactManager()">
-          <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.86 9.86 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/></svg>
-          Задать вопрос менеджеру
+        <button class="btn-kamilla" onclick="contactManager()">
+          <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM7 9h10v2H7V9zm6 5H7v-2h6v2zm4-6H7V6h10v2z"/></svg>
+          Спросить у Камиллы
         </button>
+        <a class="btn-call" href="tel:+79274334966" onclick="window.reachGoal && window.reachGoal('click_call')">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25 1.12.37 2.32.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          Позвонить
+        </a>
       </div>
     </div>
   </section>
@@ -1131,6 +1622,14 @@
       <div>© 2026 KIBERone · школа цифровых технологий для детей 6–14 лет</div>
     </div>
   </footer>
+
+  <!-- STICKY MOBILE BAR -->
+  <div class="mbar" id="mbar" aria-hidden="true">
+    <button class="mbar-btn mbar-primary" type="button" onclick="openModal()">Записаться на пробный</button>
+    <a class="mbar-btn mbar-call" href="tel:+79274334966" aria-label="Позвонить" onclick="window.reachGoal && window.reachGoal('click_call')">
+      <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25 1.12.37 2.32.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+    </a>
+  </div>
 
   <!-- MODAL -->
   <div class="modal-bg" id="modal-bg" onclick="closeOnBg(event)">
@@ -1170,18 +1669,16 @@
   </div>
 
   <script>
-    // ─────── Branch phones ───────
-    // ⚠️ Маркетолог: проставить реальные WhatsApp-номера филиалов
-    const BRANCHES = {
-      'челны':       { phone: '79270000001', city: 'Челны' },
-      'нижнекамск':  { phone: '79270000002', city: 'Нижнекамск' },
-      'казань':      { phone: '79270000003', city: 'Казань' },
-      'елабуга':     { phone: '79270000004', city: 'Елабуга' },
-      'краснодар':   { phone: '79270000005', city: 'Краснодар' },
-      'сургут':      { phone: '79270000006', city: 'Сургут' },
-      'пермь':       { phone: '79270000007', city: 'Пермь' }
+    // ─────── Контакты ───────
+    // Единый телефон для входящих звонков (многоканальный номер KIBERone, распределяется по хантерам).
+    const CALL_PHONE = '+7 (927) 433-49-66';
+    const CALL_HREF  = 'tel:+79274334966';
+    // Из UTM city берём только подпись города, чтобы Камилла сразу понимала регион.
+    const CITY_LIST = ['челны','нижнекамск','казань','елабуга','краснодар','сургут','пермь'];
+    const CITY_LABEL = {
+      'челны':'Челны','нижнекамск':'Нижнекамск','казань':'Казань','елабуга':'Елабуга',
+      'краснодар':'Краснодар','сургут':'Сургут','пермь':'Пермь'
     };
-    const DEFAULT_PHONE = '79270000000';
 
     // ─────── UTM ───────
     const params = new URLSearchParams(window.location.search);
@@ -1189,9 +1686,7 @@
     const childName  = (params.get('child') || '').trim();
     const lastDate   = (params.get('last') || '').trim();
     const cityParam  = (params.get('city') || '').trim().toLowerCase();
-    const branch     = BRANCHES[cityParam] || null;
-    const phone      = branch ? branch.phone : DEFAULT_PHONE;
-    const city       = branch ? branch.city : '';
+    const city       = CITY_LABEL[cityParam] || '';
 
     // ─────── Personalization ───────
     if (parentName || childName || lastDate) {
@@ -1221,25 +1716,50 @@
     }
     updateCountdown();
 
-    // ─────── WhatsApp helpers ───────
-    function openWa(text) {
-      window.location.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+    // ─────── Открыть Камиллу с preset-сообщением ───────
+    // Внешние wa.me не используем — WA-канал Камиллы пока в бане Meta, старый Wazzup занят под B2C.
+    // Виджет Камиллы — тот же Wazzup + Haiku 4.5, но прямо в браузере (не улетаем со страницы).
+    function openKamilla(preset, attempts) {
+      attempts = attempts || 0;
+      if (!window.KBR || !window.KBR.open) {
+        if (attempts > 20) return; // виджет не поднялся — тихо игнорим
+        return setTimeout(() => openKamilla(preset, attempts + 1), 150);
+      }
+      window.reachGoal && window.reachGoal('open_kamilla');
+      window.KBR.open();
+      if (!preset) return;
+      setTimeout(() => {
+        const ta = document.querySelector('.kbr-textarea');
+        const btn = document.querySelector('.kbr-send');
+        if (ta && btn) {
+          ta.value = preset;
+          ta.dispatchEvent(new Event('input'));
+          btn.click();
+        }
+      }, 250);
     }
     function askForSchedule() {
+      window.reachGoal && window.reachGoal('click_ask_schedule');
       const childPart = childName ? ` для ${childName}` : '';
       const cityPart = city ? ` (город ${city})` : '';
-      openWa(`Здравствуйте! Пришлите, пожалуйста, расписание AI-пробных на сентябрь${cityPart}${childPart}. Хочу выбрать удобный день.`);
+      openKamilla(`Здравствуйте! Хочу узнать расписание AI-пробных на сентябрь${cityPart}${childPart}. Подберите, пожалуйста, удобный день.`);
     }
     function contactManager() {
+      window.reachGoal && window.reachGoal('click_ask_manager');
       const intro = parentName
         ? `Здравствуйте, это ${parentName}. У меня вопрос по AI-пробному в KIBERone.`
         : 'Здравствуйте! У меня вопрос по AI-пробному в KIBERone.';
-      openWa(intro);
+      openKamilla(intro);
+    }
+    function callPhone() {
+      window.reachGoal && window.reachGoal('click_call');
+      window.location.href = CALL_HREF;
     }
 
     // ─────── Modal ───────
     const modalBg = document.getElementById('modal-bg');
     function openModal() {
+      window.reachGoal && window.reachGoal('open_modal');
       modalBg.classList.add('open');
       document.body.style.overflow = 'hidden';
       if (parentName) {
@@ -1264,7 +1784,9 @@
       const cityPart = city ? `\nГород: ${city}` : '';
       const childPart = childName ? `\nРебёнок: ${childName}` : '';
       const text = `Здравствуйте! Хочу записать ребёнка на AI-пробный.\n\nИмя: ${name}\nТелефон: ${tel}\nУдобный день: ${day}${cityPart}${childPart}`;
-      openWa(text);
+      window.reachGoal && window.reachGoal('submit_lead', { city: city || 'unknown', day: day });
+      closeModal();
+      openKamilla(text);
     }
 
     // ─────── Phone mask ───────
@@ -1294,6 +1816,89 @@
       });
     }, { threshold: 0.12 });
     reveals.forEach(el => io.observe(el));
+
+    // ─────── Scroll-depth цели: 50/75/100% ───────
+    const scrollGoals = { 50: false, 75: false, 100: false };
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      const pct = Math.round(((h.scrollTop + window.innerHeight) / h.scrollHeight) * 100);
+      [50, 75, 100].forEach(p => {
+        if (pct >= p && !scrollGoals[p]) {
+          scrollGoals[p] = true;
+          window.reachGoal && window.reachGoal('scroll_' + p);
+        }
+      });
+    }, { passive: true });
+
+    // ─────── Клик по хедер-CTA ───────
+    document.querySelectorAll('.header-cta').forEach(el => {
+      el.addEventListener('click', () => window.reachGoal && window.reachGoal('click_header_cta'));
+    });
+
+    // ─────── Sticky mobile bar (появляется после первого экрана) ───────
+    (function () {
+      const mbar = document.getElementById('mbar');
+      if (!mbar) return;
+      const trigger = 400; // пикселей скролла
+      let on = false;
+      function toggle() {
+        const shouldOn = window.scrollY > trigger;
+        if (shouldOn !== on) {
+          on = shouldOn;
+          mbar.classList.toggle('on', on);
+          document.body.classList.toggle('has-mbar', on);
+          mbar.setAttribute('aria-hidden', on ? 'false' : 'true');
+        }
+      }
+      window.addEventListener('scroll', toggle, { passive: true });
+      toggle();
+    })();
+
+    // ─────── Video facade (YouTube lazy) ───────
+    (function () {
+      const facade = document.getElementById('video-facade');
+      if (!facade) return;
+      function play() {
+        const id = (facade.dataset.videoId || '').trim();
+        window.reachGoal && window.reachGoal('video_play');
+        if (!id) {
+          const cta = document.getElementById('cta');
+          if (cta) cta.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0&modestbranding=1`;
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.setAttribute('allowfullscreen', '');
+        facade.innerHTML = '';
+        facade.appendChild(iframe);
+      }
+      facade.addEventListener('click', play);
+      facade.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(); }
+      });
+    })();
+  </script>
+
+  <!-- ══ Камилла — AI-ассистент KIBERone ══ -->
+  <script
+    src="https://assistant.it-kiber.ru/widget.js"
+    data-api="https://assistant.it-kiber.ru"
+    data-channel="web"
+    defer></script>
+  <script>
+    // Одноразовая цель «открыл Камиллу»
+    (function () {
+      let fired = false;
+      const observer = new MutationObserver(() => {
+        const panel = document.querySelector('.kbr-panel');
+        if (panel && !panel.hidden && !fired) {
+          fired = true;
+          window.reachGoal && window.reachGoal('open_kamilla');
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['hidden'] });
+    })();
   </script>
 </body>
 </html>
