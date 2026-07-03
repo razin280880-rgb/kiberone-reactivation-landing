@@ -1687,9 +1687,45 @@
     const lastDate   = (params.get('last') || '').trim();
     const cityParam  = (params.get('city') || '').trim().toLowerCase();
     const city       = CITY_LABEL[cityParam] || '';
+    const utmCampaign = (params.get('utm_campaign') || '').trim().toLowerCase();
+    const utmContent  = (params.get('utm_content')  || '').trim().toLowerCase();
+    const isPerezagruzka = utmCampaign.startsWith('perezagruzka');
 
-    // ─────── Personalization ───────
-    if (parentName || childName || lastDate) {
+    // ─────── Perezagruzka mode: подменяем HERO под волну ───────
+    if (isPerezagruzka) {
+      const SEG_PITCH = {
+        fresh: 'В этом сезоне {child} перестал ходить на занятия — вот наш подарок для «своих». За это лето мы переупаковали программу под AI. Приходите посмотреть.',
+        warm:  'Год назад {child} у нас занимался — с тех пор появился AI-блок, которого раньше не было. Собрали подарочный интенсив, чтобы показать новое направление.',
+        cool:  'За пару лет школа сильно поменялась — появилось направление AI и нейросетей. Собрали интенсив для бывших учеников, чтобы вы могли посмотреть, что мы теперь.',
+        cold:  'Раньше у нас занимался {child}. Знаем, это было давно — школа поменялась. Собрали для бывших учеников бесплатный интенсив на 2 субботы, без обязательств.',
+      };
+      const childRef = childName || 'ваш ребёнок';
+      const pitch = (SEG_PITCH[utmContent] || SEG_PITCH.warm).replace(/\{child\}/g, childRef);
+
+      // Заголовок и подзаголовок
+      const heroBadge = document.querySelector('.hero-badge');
+      if (heroBadge) heroBadge.textContent = '🎁 Подарок для бывших учеников';
+
+      const h1 = document.querySelector('.hero h1');
+      if (h1) h1.innerHTML = 'Ваш подарок — <span class="accent">2 субботы бесплатно</span>';
+
+      const heroQ = document.querySelector('.hero-question');
+      if (heroQ) heroQ.innerHTML = '4 занятия по 90 мин: <span class="strong">AI-помощник школьника</span> + <span class="strong">Презентация за 30 минут</span> с AI-картинками. Ребёнок уйдёт с готовой презентацией в школу.';
+
+      // Персонализация
+      document.getElementById('personalization').classList.remove('hidden');
+      document.getElementById('parent-greeting').textContent = parentName ? `${parentName},` : 'Здравствуйте,';
+      document.getElementById('personalization-text').textContent = pitch;
+
+      // CTA кнопки
+      const btnPrim = document.querySelector('.btn-primary');
+      if (btnPrim) btnPrim.firstChild && (btnPrim.firstChild.textContent = 'Записаться на «Перезагрузку» ');
+
+      const meta = document.querySelector('.hero-meta');
+      if (meta) meta.innerHTML = '<div class="hero-meta-item">Полностью бесплатно</div><div class="hero-meta-item">2 субботы по 3 часа</div><div class="hero-meta-item">Готовая презентация в школу</div>';
+    }
+    // ─────── Обычная personalization (не перезагрузка) ───────
+    else if (parentName || childName || lastDate) {
       document.getElementById('personalization').classList.remove('hidden');
       const greeting = parentName ? `${parentName},` : 'Здравствуйте,';
       document.getElementById('parent-greeting').textContent = greeting;
@@ -1742,7 +1778,11 @@
       window.reachGoal && window.reachGoal('click_ask_schedule');
       const childPart = childName ? ` для ${childName}` : '';
       const cityPart = city ? ` (город ${city})` : '';
-      openKamilla(`Здравствуйте! Хочу узнать расписание AI-пробных на сентябрь${cityPart}${childPart}. Подберите, пожалуйста, удобный день.`);
+      if (isPerezagruzka) {
+        openKamilla(`Здравствуйте! Пришёл по «Перезагрузке» (${utmContent || '?'})${cityPart}${childPart}. Расскажите расписание ближайшей группы и как записаться.`);
+      } else {
+        openKamilla(`Здравствуйте! Хочу узнать расписание AI-пробных на сентябрь${cityPart}${childPart}. Подберите, пожалуйста, удобный день.`);
+      }
     }
     function contactManager() {
       window.reachGoal && window.reachGoal('click_ask_manager');
@@ -1783,8 +1823,12 @@
       const day  = f.day.value.trim();
       const cityPart = city ? `\nГород: ${city}` : '';
       const childPart = childName ? `\nРебёнок: ${childName}` : '';
-      const text = `Здравствуйте! Хочу записать ребёнка на AI-пробный.\n\nИмя: ${name}\nТелефон: ${tel}\nУдобный день: ${day}${cityPart}${childPart}`;
-      window.reachGoal && window.reachGoal('submit_lead', { city: city || 'unknown', day: day });
+      const segPart = isPerezagruzka ? `\nКампания: perezagruzka (${utmContent || '?'})` : '';
+      const intro = isPerezagruzka
+        ? 'Здравствуйте! Хочу записать ребёнка на «Перезагрузку» (2 бесплатные субботы).'
+        : 'Здравствуйте! Хочу записать ребёнка на AI-пробный.';
+      const text = `${intro}\n\nИмя: ${name}\nТелефон: ${tel}\nУдобный день: ${day}${cityPart}${childPart}${segPart}`;
+      window.reachGoal && window.reachGoal(isPerezagruzka ? 'submit_lead_perezagruzka' : 'submit_lead', { city: city || 'unknown', day: day, segment: utmContent || '' });
       closeModal();
       openKamilla(text);
     }
