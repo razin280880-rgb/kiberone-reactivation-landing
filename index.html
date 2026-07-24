@@ -629,7 +629,7 @@
       margin: 0 auto;
     }
     @media (min-width: 720px) {
-      .testimonials { grid-template-columns: repeat(3, 1fr); }
+      .testimonials { grid-template-columns: repeat(2, 1fr); }
     }
     .testimonial {
       background: var(--white);
@@ -664,17 +664,18 @@
       gap: 12px;
     }
     .testimonial-avatar {
-      width: 48px;
-      height: 48px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      color: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 18px;
+      overflow: hidden;
       flex-shrink: 0;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    }
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     .testimonial-name {
       font-weight: 700;
@@ -1460,50 +1461,34 @@
       <div class="testimonials">
         <div class="testimonial">
           <p class="testimonial-text">
-            Старший раньше ходил на программирование в другую школу — там за полгода так и не понял, зачем это.
-            Здесь после первого занятия пришёл и показал игру, которую он <strong>сделал САМ с помощью нейросети</strong>.
-            Глаза горят — давно такого не видела.
+            Александр обучается у нас с октября 2025 г. Александру очень нравится ходить в школу программирования.
+            На каждом уроке он получает новые знания, которые пригодятся ему в будущем.
+            Опытные преподаватели преподносят учебный материал доступно для детей.
           </p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">АЗ</div>
+            <div class="testimonial-avatar"><img src="assets/testimonials/maxim.jpg" alt="Максим, папа Александра"></div>
             <div>
-              <div class="testimonial-name">Айгуль, мама Артёма (11)</div>
-              <div class="testimonial-meta">Челны · 4 месяца с нами</div>
+              <div class="testimonial-name">Максим, папа Александра</div>
+              <div class="testimonial-meta">Набережные Челны · 9 месяцев с нами</div>
             </div>
           </div>
         </div>
 
         <div class="testimonial">
           <p class="testimonial-text">
-            Записывали дочку «попробовать», чтобы оторвать от телефона. Думала, не зайдёт — она у нас гуманитарий.
-            А оказалось, что <strong>сценарии для игры через ИИ</strong> — это её. Теперь сама просится на занятия. Спасибо.
+            Наш ребёнок посещает школу программирования KIBERone вот уже <strong>три года</strong>.
+            Занятия проходят в увлекательном формате, на занятия ходим с удовольствием.
+            Хочется поблагодарить любимого преподавателя — Софью 🌹 С нетерпением ждём нового учебного года 🙌
           </p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">ЕМ</div>
+            <div class="testimonial-avatar"><img src="assets/testimonials/svetlana.jpg" alt="Светлана, мама Сергея"></div>
             <div>
-              <div class="testimonial-name">Елена, мама Миры (9)</div>
-              <div class="testimonial-meta">Казань · 2 месяца с нами</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial">
-          <p class="testimonial-text">
-            Я сам IT-шник, скептически относился к «детским курсам по ИИ» — обычно это маркетинг.
-            Здесь честно: ребёнок реально работает с настоящими нейросетями, а не просто кнопочки тыкает.
-            <strong>Стоит каждой копейки.</strong>
-          </p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">РС</div>
-            <div>
-              <div class="testimonial-name">Руслан, папа Тимура (13)</div>
-              <div class="testimonial-meta">Нижнекамск · 6 месяцев с нами</div>
+              <div class="testimonial-name">Светлана, мама Сергея</div>
+              <div class="testimonial-meta">Набережные Челны · 3 года с нами</div>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- ⚠️ Маркетолог: замените на 3 реальных отзыва от текущих клиентов -->
     </div>
   </section>
 
