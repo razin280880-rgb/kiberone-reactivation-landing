@@ -872,7 +872,7 @@
     .modal-submit {
       width: 100%;
       padding: 18px;
-      background: var(--whatsapp);
+      background: var(--primary);
       color: var(--white);
       border: 0;
       border-radius: var(--radius-md);
@@ -883,7 +883,7 @@
       margin-top: 4px;
       transition: background 0.15s;
     }
-    .modal-submit:hover { background: var(--whatsapp-dark); }
+    .modal-submit:hover { background: var(--primary-dark); }
     .modal-hint {
       font-size: 12px;
       color: var(--gray-500);
@@ -1550,7 +1550,7 @@
         <details class="faq-item">
           <summary>Можно записаться в другой филиал, если сменился район?</summary>
           <div class="faq-answer">
-            <p>Да, у нас 24 локации в 7 городах: Челны, Нижнекамск, Казань, Елабуга, Краснодар, Сургут и Пермь. Напишите менеджеру в WhatsApp, в каком районе удобно — подберём ближайшую точку и предложим свободные слоты.</p>
+            <p>Да, у нас 24 локации в 7 городах: Челны, Нижнекамск, Казань, Елабуга, Краснодар, Сургут и Пермь. Напишите менеджеру в MAX, в каком районе удобно — подберём ближайшую точку и предложим свободные слоты.</p>
           </div>
         </details>
 
@@ -1584,7 +1584,7 @@
   <section class="final-cta" id="cta">
     <div class="container">
       <h2>Покажите ребёнку, как работает ИИ — за 1 час</h2>
-      <p>Бесплатно, без обязательств. Запишитесь на любой день этой недели — менеджер свяжется в WhatsApp за 10 минут.</p>
+      <p>Бесплатно, без обязательств. Запишитесь на любой день этой недели — менеджер свяжется в MAX за 10 минут.</p>
       <div class="final-cta-row">
         <button class="btn-primary" onclick="openModal()">
           Записаться на пробный
@@ -1624,7 +1624,7 @@
     <div class="modal" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeModal()">×</button>
       <h3>Запись на AI-пробный</h3>
-      <p>3 поля — менеджер свяжется в WhatsApp в течение 10 минут и подтвердит время.</p>
+      <p>3 поля — менеджер свяжется в MAX в течение 10 минут и подтвердит время.</p>
 
       <form id="signup-form" onsubmit="submitForm(event)">
         <div class="form-group">
@@ -1632,7 +1632,7 @@
           <input id="parent_name" name="parent_name" type="text" placeholder="Имя" required autocomplete="given-name">
         </div>
         <div class="form-group">
-          <label for="phone">Телефон для WhatsApp</label>
+          <label for="phone">Ваш телефон</label>
           <input id="phone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" required autocomplete="tel">
         </div>
         <div class="form-group">
@@ -1649,7 +1649,7 @@
           </select>
         </div>
         <button type="submit" class="modal-submit">
-          Отправить и открыть WhatsApp →
+          Отправить заявку →
         </button>
         <div class="modal-hint">Нажав кнопку, вы соглашаетесь на обработку персональных данных</div>
       </form>
