@@ -898,7 +898,9 @@
     }
     .video-facade {
       position: relative;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 9 / 16;
+      max-width: 380px;
+      margin: 0 auto;
       border-radius: var(--radius-lg);
       overflow: hidden;
       cursor: pointer;
@@ -907,13 +909,15 @@
       isolation: isolate;
     }
     .video-facade img,
-    .video-facade iframe {
+    .video-facade iframe,
+    .video-facade video {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       border: 0;
+      background: #000;
     }
     .video-facade::before {
       content: '';
@@ -1255,14 +1259,13 @@
   <!-- VIDEO -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title">За 60 секунд — что теперь происходит на пробном</h2>
+      <h2 class="section-title">За 40 секунд — что теперь происходит на пробном</h2>
       <p class="section-sub">Настоящее занятие, снятое в наших классах. Посмотрите — потом решите, стоит ли час вашего вечера.</p>
 
       <div class="video-wrap">
-        <!-- ⚠️ Маркетолог: подставьте YOUTUBE_ID и, при желании, poster.jpg (1200×675) в корень проекта -->
-        <div class="video-facade" id="video-facade" data-video-id="" role="button" tabindex="0" aria-label="Смотреть видео 60 секунд про AI-пробный">
-          <div class="video-fallback">KIBERone · AI-пробный</div>
-          <div class="video-caption">60 секунд · без монтажа</div>
+        <div class="video-facade" id="video-facade" role="button" tabindex="0" aria-label="Смотреть видео про пробный урок">
+          <video id="probnoye-video" preload="metadata" playsinline muted src="assets/video/probnoye.mp4"></video>
+          <div class="video-caption">40 секунд · снято на пробном</div>
           <button class="video-play" type="button" aria-label="Смотреть видео"></button>
         </div>
       </div>
@@ -1883,24 +1886,24 @@
       toggle();
     })();
 
-    // ─────── Video facade (YouTube lazy) ───────
+    // ─────── Video facade (native <video>) ───────
     (function () {
       const facade = document.getElementById('video-facade');
-      if (!facade) return;
+      const video = document.getElementById('probnoye-video');
+      if (!facade || !video) return;
+      let started = false;
       function play() {
-        const id = (facade.dataset.videoId || '').trim();
+        if (started) return;
+        started = true;
         window.reachGoal && window.reachGoal('video_play');
-        if (!id) {
-          const cta = document.getElementById('cta');
-          if (cta) cta.scrollIntoView({ behavior: 'smooth' });
-          return;
-        }
-        const iframe = document.createElement('iframe');
-        iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0&modestbranding=1`;
-        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-        iframe.setAttribute('allowfullscreen', '');
-        facade.innerHTML = '';
-        facade.appendChild(iframe);
+        video.muted = false;
+        video.controls = true;
+        const p = video.play();
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+        const cap = facade.querySelector('.video-caption');
+        const btn = facade.querySelector('.video-play');
+        if (cap) cap.style.display = 'none';
+        if (btn) btn.style.display = 'none';
       }
       facade.addEventListener('click', play);
       facade.addEventListener('keydown', (e) => {
